@@ -2,13 +2,9 @@ import axios from "axios";
 
 const API = axios.create({ baseURL: "https://dataforge.onrender.com/" });
 
-// export const fetchPosts = () => API.get("/posts");
-// export const createPost = (newPost) => API.post("/posts", newPost);
-// export const updatePost = (id, updatedPost) =>
-//   API.patch(`/posts/${id}`, updatedPost);
-// export const deletePost = (id) => API.delete(`/posts/${id}`);
-// export const likePost = (id, updatedPost) =>
-//   API.patch(`/posts/${id}/like`, updatedPost);
+// File Processing routes
+// Get dataset head, i.e., first 5 rows by default
+export const getDatasetHead = (id) => API.post(`/upload-csv/${id}`)
 
 // FI: Auth requests
 export const login = (formData) =>

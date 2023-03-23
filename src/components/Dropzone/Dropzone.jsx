@@ -1,9 +1,8 @@
-import React, { useCallback, useContext } from "react";
+import React, { useContext } from "react";
 import { useDropzone } from "react-dropzone";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
-import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { FileContext } from "../../App";
 
