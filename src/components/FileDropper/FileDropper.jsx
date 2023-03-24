@@ -9,17 +9,16 @@ const FileDropper = () => {
   const { fileState, setFileState } = useContext(FileContext);
 
   const handleFiles = async (fileList) => {
-    const userObj = JSON.parse(localStorage.getItem("User"));
-    console.log(fileList.item(0));
-    const reader = new FileReader();
-    reader.onload = async (evt) => {
-      console.log(evt.target.result);
-      const rows = await api.getDatasetHead(evt.target.result);
+    try {
+      const userObj = JSON.parse(localStorage.getItem("User"));
+      console.log(fileList.item(0));
+      const formData = new FormData();
+      formData.append("file", fileList.item(0));
+      const rows = await api.getDatasetHead(userObj.user.id, formData);
       console.log(rows);
-    };
-    reader.readAsText(fileList.item(0));
-
-    // console.log(file);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // const getDatasetHead = async () => {
