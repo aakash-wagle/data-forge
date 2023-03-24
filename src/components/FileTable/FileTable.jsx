@@ -14,6 +14,7 @@ function createData(name, calories, fat, carbs, protein) {
 }
 
 
+
 export default function FileTable() {
   const rows = [
     createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
@@ -25,16 +26,19 @@ export default function FileTable() {
 
   const {fileState} = useContext(FileContext)
   
-  useEffect(() => {
-    // const userID = localStorage.getItem()
-    // api.getDatasetHead(userID)
+  //   useEffect(() => {
+  //   getDatasetHead()
+  //   // return () => {
+  //   //   // cleanup code
+  //   // }
+  // }, [fileState])
   
-    // return () => {
-    //   // cleanup code
-    // }
-  }, [fileState])
+  // const getDatasetHead = async () => {
+  //   const userObj = JSON.parse(localStorage.getItem("User"))
+  //   const rows = await api.getDatasetHead(userObj.user.id, fileState)
+  //   console.log(rows);
+  // }
   
-
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
