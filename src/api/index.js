@@ -2,13 +2,18 @@ import axios from "axios";
 
 const API = axios.create({ baseURL: "https://dataforge.onrender.com/" });
 
-// export const fetchPosts = () => API.get("/posts");
-// export const createPost = (newPost) => API.post("/posts", newPost);
-// export const updatePost = (id, updatedPost) =>
-//   API.patch(`/posts/${id}`, updatedPost);
-// export const deletePost = (id) => API.delete(`/posts/${id}`);
-// export const likePost = (id, updatedPost) =>
-//   API.patch(`/posts/${id}/like`, updatedPost);
+// File Processing routes
+// Get dataset head, i.e., first 5 rows by default
+// export const getDatasetHead = (id, file) =>
+//   API.post(`/upload-csv/${id}`, file, {
+//     headers: { "Content-Type": "text/csv" }, // Choosing appropriate MIME type
+//   });
+
+export const getDatasetHead = (id, file) =>
+  API.post(
+    `/upload-csv/${id}`,
+    file
+  );
 
 // FI: Auth requests
 export const login = (formData) =>
@@ -16,10 +21,11 @@ export const login = (formData) =>
     headers: { "Content-Type": "application/json" },
   });
 
-export const register = (formData) =>{
+export const register = (formData) => {
   console.log("Register API called");
   return API.post("/register", formData, {
     headers: { "Content-Type": "application/json" },
-  })};
+  });
+};
 
 // export const signUp = (formData) => API.post("/user/", formData);

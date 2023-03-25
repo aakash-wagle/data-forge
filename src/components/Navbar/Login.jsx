@@ -2,17 +2,16 @@ import { useState } from "react";
 import { Fragment } from "react";
 import { Modal, Box } from "@mui/material";
 import style from "./Login.module.css";
-import axios from "axios";
 // import { makeStyles } from '@material-ui/core/styles';
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { display } from "@mui/system";
+// import { display } from "@mui/system";
 import * as api from "../../api";
 
 export const LoginModal = (props) => {
   const [loginForm, setLoginForm] = useState({
-    loginemail: "",
-    loginpassword: "",
+    loginEmail: "",
+    loginPassword: "",
   });
 
   const [signupForm, setSignupForm] = useState({
@@ -26,7 +25,7 @@ export const LoginModal = (props) => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === "loginemail" || name === "loginpassword") {
+    if (name === "loginEmail" || name === "loginPassword") {
       setLoginForm((prevState) => ({ ...prevState, [name]: value }));
     } else {
       setSignupForm((prevState) => ({ ...prevState, [name]: value }));
@@ -37,16 +36,15 @@ export const LoginModal = (props) => {
     event.preventDefault();
     try {
       const res = await api.login({
-        email: loginForm.loginemail,
-        password: loginForm.loginpassword,
+        email: loginForm.loginEmail,
+        password: loginForm.loginPassword,
       });
-      console.log(res);
       // Handle successful login
       const userObj = {
-        token: res.token,
-        user: res.user,
+        token: res.data.token,
+        user: res.data.user,
       };
-      localStorage.setItem("User", userObj);
+      localStorage.setItem("User", JSON.stringify(userObj));
     } catch (error) {
       // Handle login error
       console.log(error);
@@ -114,22 +112,23 @@ export const LoginModal = (props) => {
             {login ? (
               <div className={style.loginForm}>
                 <form
+                  method="post"
                   className={style.form}
                   noValidate
                   autoComplete="off"
                   onSubmit={handleLoginSubmit}
                 >
                   <TextField
-                    id="loginemail"
+                    id="loginEmail"
                     label="Email"
-                    name="loginemail"
+                    name="loginEmail"
                     value={loginForm.email}
                     onChange={handleInputChange}
                   />
                   <TextField
-                    id="loginpassword"
+                    id="loginPassword"
                     label="Password"
-                    name="loginpassword"
+                    name="loginPassword"
                     type="password"
                     value={loginForm.password}
                     onChange={handleInputChange}
