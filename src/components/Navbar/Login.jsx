@@ -42,7 +42,7 @@ export const LoginModal = (props) => {
       // Handle successful login
       const userObj = {
         token: res.data.token,
-        user: res.data.user,
+        user: res.data.user
       };
       localStorage.setItem("User", JSON.stringify(userObj));
     } catch (error) {
@@ -64,7 +64,7 @@ export const LoginModal = (props) => {
       if (res.status == 200) {
         const userObj = {
           token: res.token,
-          user: res,
+          user: res
           // user, 
         };
         localStorage.setItem("User", userObj);

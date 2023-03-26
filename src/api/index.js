@@ -29,3 +29,10 @@ export const register = (formData) => {
 };
 
 // export const signUp = (formData) => API.post("/user/", formData);
+
+export const get_cols_info = (id) =>{
+  console.log("get_csv_column_info API called");
+  return API.get(`/get_csv_column_info/${id}`, {
+    headers: { "Content-Type": "application/json" },
+  });
+}

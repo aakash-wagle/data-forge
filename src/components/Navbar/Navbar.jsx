@@ -18,6 +18,8 @@ export default function Navbar() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
   useEffect(() => {
+    let userDetails = localStorage.getItem("User");
+    // console.log(JSON.parse(userDetails));
     if (localStorage.getItem("User") === null) {
       setIsUserLoggedIn(false);
     } else {
