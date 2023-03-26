@@ -58,11 +58,6 @@ export default function FileTable() {
                     {row[cell]}
                   </TableCell>
                 ))}
-                {/* <TableCell component="th" scope="row">
-                  {row[colNames.at(index)]}
-                </TableCell>
-                <TableCell align="right">{row[colNames[1]]}</TableCell>
-                <TableCell align="right">{row[colNames[2]]}</TableCell> */}
               </TableRow>
             ))}
         </TableBody>
