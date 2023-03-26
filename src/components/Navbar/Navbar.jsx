@@ -10,6 +10,8 @@ import { ButtonGroup } from "@mui/material";
 import { LoginModal } from "./Login";
 import { useState, useEffect } from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
+import StickyNote2Icon from '@mui/icons-material/StickyNote2';
+import ConstructionIcon from '@mui/icons-material/Construction';
 
 export default function Navbar() {
   const [openLogin, setOpenLogin] = useState(false);
@@ -36,14 +38,19 @@ export default function Navbar() {
             </Typography>
             <ButtonGroup variant="outlined" aria-label="outlined button group">
               {isUserLoggedIn ? (
-                <Button
+                <div>
+
+                  <Button><StickyNote2Icon/></Button>
+                  <Button><ConstructionIcon/></Button>
+                  <Button
                   onClick={() => {
                     localStorage.removeItem("User");
                     window.location.reload();
                   }}
-                >
-                  <LogoutIcon />
-                </Button>
+                  >
+                    <LogoutIcon />
+                  </Button>
+                </div>
               ) : (
                 <Button
                   onClick={() => {
