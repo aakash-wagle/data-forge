@@ -15,8 +15,13 @@ import PipelineBuilder from "./components/Pipeline/PipelineBuilder";
 
 export const FileContext = createContext(null);
 
+const initialState = {
+  metadata: "",
+  data: ""
+}
+
 function App() {
-  const [fileState, setFileState] = useState("");
+  const [fileState, setFileState] = useState(initialState);
 
   return (
     <div className="App">

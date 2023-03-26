@@ -32,7 +32,7 @@ export default function Navbar() {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar
           position="absolute"
-          sx={{ backgroundColor: "rgba(85,167,47, .1)" }}
+          sx={{ backgroundColor: "rgba(85,167,47, .1)", marginBottom: 3 }}
         >
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
