@@ -8,22 +8,28 @@ import * as api from "../../api";
 const FileDropper = () => {
   const { fileState, setFileState } = useContext(FileContext);
 
+  // Sends the file to the backend using axios.
+  // Use multipart/FormData to send documents
   const handleFiles = async (fileList) => {
     try {
+      const file = fileList.item(0);
+      const metadata = { name: file.name, type: file.type };
       const userObj = JSON.parse(localStorage.getItem("User"));
-      console.log(fileList.item(0));
+      // console.log(fileList.item(0));
+
       const formData = new FormData();
-      formData.append("file", fileList.item(0));
-      const rows = await api.getDatasetHead(userObj.user.id, formData);
-      console.log(rows);
+      formData.append("file", file);
+      const { data } = await api.getDatasetHead(userObj.user.id, formData);
+
+      setFileState((prevFileState) => {
+        return { ...prevFileState, metadata: metadata, data: data.data };
+      });
+      // console.log(data);
+      // console.log(data.data[0]["Movie Name"]);
     } catch (error) {
       console.log(error);
     }
   };
-
-  // const getDatasetHead = async () => {
-
-  // };
 
   // drag state
   const [dragActive, setDragActive] = useState(false);

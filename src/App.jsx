@@ -8,8 +8,13 @@ import { Stack } from "@mui/material";
 
 export const FileContext = createContext(null);
 
+const initialState = {
+  metadata: "",
+  data: ""
+}
+
 function App() {
-  const [fileState, setFileState] = useState("");
+  const [fileState, setFileState] = useState(initialState);
 
   return (
     <div className="App">
