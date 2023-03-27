@@ -4,11 +4,12 @@ import React from "react";
 import { Button,FormControl,Select,InputLabel,MenuItem, TextField } from "@mui/material";
 import { Form } from "react-router-dom/dist";
 import { useNavigate } from "react-router-dom/dist";
+import { API } from "../../api";
 
 
 const PipelineBuilder = ()=>{
 
-    const [pipeline, setPipeline] = useState({});
+    const [pipeline, setPipeline] = useState([]);
     const [columnData, setColumnData] = useState({});
 
     const [selectedOp, setselectedOp] = useState("");
@@ -16,6 +17,7 @@ const PipelineBuilder = ()=>{
     const [input1, setinput1] = useState("");
 
     const navigate = useNavigate();
+  
 
     useEffect(() => {
       const userDetails = JSON.parse(localStorage.getItem("User"));
@@ -37,21 +39,64 @@ const PipelineBuilder = ()=>{
     }, [])
     
     const operations ={
-        "Rename Column": {"Old Name":["string","drop"], "New Name":["string","text"]},
-        "Drop Column": {"Column Name":["string","drop"]},
-        "Fill Empty Cells": {"Column Name":["string","drop"],"Replace term":["string","text"]},
-        "Drop Empty Cells":{"Column Name":["string","drop"]},
-        "One Hot Encoding":{"Column Names separaed by commas":["string","mult"]},
-        "Tokenize":{"Column Name":["string","drop"]},
-        "Remove Stopwords":{"Column Name":["string","drop"]}
+        "Rename Column": {"Old Name":["any","drop"], "New Name":["object","text"]},
+        "Drop Column": {"Column Name":["any","drop"]},
+        "Fill Empty Cells": {"Column Name":["any","drop"],"Replace term":["object","text"]},
+        "Drop Empty Cells":{"Column Name":["any","drop"]},
+        "One Hot Encoding":{"Column Names separaed by commas":["object","mult"]},
+        "Tokenize":{"Column Name":["object","drop"]},
+        "Remove Stopwords":{"Column Name":["object","drop"]}
+    }
+
+    const opsRoutes = {
+        "Rename Column": "rename_colums",
+        "Drop Column": "drop_columns",
+        "Fill Empty Cells": "fill_nan",
+        "Drop Empty Cells":"drop_nan",
+        "One Hot Encoding":"one_hot_encoding",
+        "Tokenize":"tokenize",
+        "Remove Stopwords":"remove_stopwords"
+    }
+
+    const exitHandler = ()=>{
+        setPipeline([]);
+        setColumnData({});
+        setinput0("");
+        setinput1("");
+        setselectedOp("");
+        navigate("/");
+
+    }
+
+    const addLayerHandler = ()=>{
+        const userDetails = JSON.parse(localStorage.getItem("User"));
+        res = API.get(`/${userDetails.user.id}/${opsRoutes[selectedOp]}/${input0}/${input1}`, {
+            headers: { "Content-Type": "application/json" },
+          }).then(
+            (resp)=>{
+                if(resp.status>=200 && resp.status<300){
+                    const obj = [selectedOp, input0,input1]
+                    setPipeline((prev)=>{
+                        return [ ...prev, obj]
+                    })
+                    setselectedOp("")
+                }
+                else{
+                    document.getElementById('error').innerText = resp.message;
+                }
+            }
+        )
     }
     
+    const finishHandler = ()=>{
+
+    }
     // console.log(Object.keys(operations));
     // console.log(columnData)
     return(
         <React.Fragment>
             <div>
-               
+               <span id="error"></span>
                 <FormControl >
                     <InputLabel id="selectops">Select Operation</InputLabel>
                     <Select
@@ -99,10 +144,20 @@ const PipelineBuilder = ()=>{
                                     </MenuItem>
                                     {
                                         columnData.map((obj)=>{
-                                            if(obj["data_type"]==operations[selectedOp][field][0]){
+                                            // console.log(obj);
+                                            if(operations[selectedOp][field][0]=="any"){
+
                                                 return(
-                                                    <MenuItem key={obj["Column_name"]} value={obj["Column_name"]}>{obj["Column_name"]}</MenuItem>
+                                                    <MenuItem key={obj["column_name"]} value={obj["column_name"]}>{obj["column_name"]}</MenuItem>
                                                 )
+                                            }
+                                            else{
+
+                                                if(obj["data_type"]==operations[selectedOp][field][0]){
+                                                    return(
+                                                        <MenuItem key={obj["column_name"]} value={obj["column_name"]}>{obj["column_name"]}</MenuItem>
+                                                    )
+                                                }
                                             }
                                         }
                                         )
@@ -121,7 +176,7 @@ const PipelineBuilder = ()=>{
                                     label={field}
                                     id={field}
                                     value={index==0? input0:input1}
-                                    key = {field}
+                                    key = {index}
                                     onChange={(event) => {
                                         index==0? 
                                         setinput0(event.target.value):
@@ -135,9 +190,15 @@ const PipelineBuilder = ()=>{
                         
                         })
                     }
-                <Button>Exit</Button>
-                <Button>Add layer</Button>
-                <Button>Finish</Button>
+                <Button onClick={()=>{
+                    exitHandler();
+                }}>Exit</Button>
+                <Button onClick = {()=>{
+                    addLayerHandler();
+                }}>Add layer</Button>
+                <Button onClick={()=>{
+                    finishHandler();
+                }}>Finish</Button>
                 </FormControl>
                 }
 

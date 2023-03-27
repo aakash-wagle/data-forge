@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "https://dataforge.onrender.com/" });
+export const API = axios.create({ baseURL: "https://dataforge.onrender.com/" });
 
 // File Processing routes
 // Get dataset head, i.e., first 5 rows by default
