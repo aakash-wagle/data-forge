@@ -4,6 +4,9 @@ import React from "react";
 import { Button,FormControl,Select,InputLabel,MenuItem, TextField } from "@mui/material";
 import { Form } from "react-router-dom/dist";
 import { useNavigate } from "react-router-dom/dist";
+import { Modal, Box } from "@mui/material";
+import style from "./Pipeline.module.css";
+
 import { API } from "../../api";
 
 
@@ -17,6 +20,9 @@ const PipelineBuilder = ()=>{
     const [input1, setinput1] = useState("");
 
     const navigate = useNavigate();
+
+    const [pipelineName, setPipelineName] = useState("");
+    const [showPipelineName, setShowPipelineName] = useState(false);
   
 
     useEffect(() => {
@@ -68,33 +74,87 @@ const PipelineBuilder = ()=>{
 
     }
 
-    const addLayerHandler = ()=>{
+    const addLayerHandler = async()=>{
+    
+
         const userDetails = JSON.parse(localStorage.getItem("User"));
-        res = API.get(`/${userDetails.user.id}/${opsRoutes[selectedOp]}/${input0}/${input1}`, {
+        const resp = await API.get(`/${opsRoutes[selectedOp]}/${userDetails.user.id}/${input0}/${input1}`, {
             headers: { "Content-Type": "application/json" },
-          }).then(
-            (resp)=>{
-                if(resp.status>=200 && resp.status<300){
-                    const obj = [selectedOp, input0,input1]
-                    setPipeline((prev)=>{
-                        return [ ...prev, obj]
-                    })
-                    setselectedOp("")
-                }
-                else{
-                    document.getElementById('error').innerText = resp.message;
-                }
-            }
-        )
+          })
+
+        if(resp.status>=200 && resp.status<300){
+            const obj = [selectedOp, input0,input1]
+            setPipeline((prev)=>{
+                return [ ...prev, obj]
+            })
+            setselectedOp("")
+            setinput0("");
+            setinput1("");
+        }
+        else{
+            document.getElementById('error').innerText = resp.message;
+        }
     }
     
-    const finishHandler = ()=>{
+    const finishHandler =async ()=>{
+        const userDetails = JSON.parse(localStorage.getItem("User"));
+        const resp = await API.get(`/${opsRoutes[selectedOp]}/${userDetails.user.id}/${input0}/${input1}`, {
+            headers: { "Content-Type": "application/json" },
+          })
+
+        if(resp.status>=200 && resp.status<300){
+            const obj = [selectedOp, input0,input1]
+            setPipeline((prev)=>{
+                return [ ...prev, obj]
+            })
+            setselectedOp("")
+            setinput0("");
+            setinput1("");
+        }
+        else{
+            document.getElementById('error').innerText = resp.message;
+        }
 
     }
     // console.log(Object.keys(operations));
     // console.log(columnData)
     return(
         <React.Fragment>
+            <Modal
+            /* eslint-disable react/prop-types */
+                open={showPipelineName}
+                onClose={() => {
+                setShowPipelineName(false);
+                }}
+                // open={setOpen(true)}
+                // onClose={setOpen(false)}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box className={style.box}>
+                <div className={style.selectionContainer}> 
+                    <div className={style.loginForm}>
+                        
+                        <TextField
+                            id="pipelineName"
+                            label="Pipeline Name"
+                            name="pipelineName"
+                            value={pipelineName}
+                            onChange={setPipelineName}
+                        />
+                        
+                        <Button onClick={()=>{
+                            finishHandler();
+                        }} variant="contained" color="primary">
+                            Save & Download
+                        </Button>
+                        
+                    </div>
+                    
+                </div>
+                
+                </Box>
+            </Modal>
             <div>
                <span id="error"></span>
                 <FormControl >
@@ -197,7 +257,7 @@ const PipelineBuilder = ()=>{
                     addLayerHandler();
                 }}>Add layer</Button>
                 <Button onClick={()=>{
-                    finishHandler();
+                    setShowPipelineName(true);
                 }}>Finish</Button>
                 </FormControl>
                 }
@@ -205,13 +265,16 @@ const PipelineBuilder = ()=>{
             </div>
             <div>
                 <h3>Layers</h3>
+                <ol>
                 {
-                    Object.keys(pipeline).map((process, index)=>{
-                        <ol>
-                            <li>{process}</li>
-                        </ol>
-                    })
-                }
+                    pipeline.map((process, index)=>{
+                        console.log(pipeline);
+                        return(
+                            <li key={index}>{process[0]}</li>
+                        );  
+                        })
+                    }
+                </ol>
             </div>
 
         </React.Fragment>

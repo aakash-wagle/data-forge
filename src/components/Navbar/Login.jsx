@@ -22,6 +22,8 @@ export const LoginModal = (props) => {
 
   const [login, setLogin] = useState(true);
 
+
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
