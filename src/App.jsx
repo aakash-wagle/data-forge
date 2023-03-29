@@ -26,8 +26,8 @@ function App() {
   return (
     <div className="App">
       <FileContext.Provider value={{ fileState, setFileState }}>
-        <Navbar />
         <BrowserRouter>
+        <Navbar />
           <Routes>
             <Route path="/" element={
 

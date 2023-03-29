@@ -10,12 +10,15 @@ import { ButtonGroup } from "@mui/material";
 import { LoginModal } from "./Login";
 import { useState, useEffect } from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
-import StickyNote2Icon from '@mui/icons-material/StickyNote2';
-import ConstructionIcon from '@mui/icons-material/Construction';
+import StickyNote2Icon from "@mui/icons-material/StickyNote2";
+import ConstructionIcon from "@mui/icons-material/Construction";
+import { useNavigate } from "react-router-dom/dist";
 
 export default function Navbar() {
   const [openLogin, setOpenLogin] = useState(false);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     let userDetails = localStorage.getItem("User");
@@ -41,14 +44,21 @@ export default function Navbar() {
             <ButtonGroup variant="outlined" aria-label="outlined button group">
               {isUserLoggedIn ? (
                 <div>
-
-                  <Button><StickyNote2Icon/></Button>
-                  <Button><ConstructionIcon/></Button>
+                  <Button>
+                    <StickyNote2Icon />
+                  </Button>
                   <Button
-                  onClick={() => {
-                    localStorage.removeItem("User");
-                    window.location.reload();
-                  }}
+                    onClick={() => {
+                      navigate("/pipeline");
+                    }}
+                  >
+                    <ConstructionIcon />
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      localStorage.removeItem("User");
+                      window.location.reload();
+                    }}
                   >
                     <LogoutIcon />
                   </Button>

@@ -22,8 +22,6 @@ export const LoginModal = (props) => {
 
   const [login, setLogin] = useState(true);
 
-
-
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
@@ -44,9 +42,10 @@ export const LoginModal = (props) => {
       // Handle successful login
       const userObj = {
         token: res.data.token,
-        user: res.data.user
+        user: res.data.user,
       };
       localStorage.setItem("User", JSON.stringify(userObj));
+      window.location.reload();
     } catch (error) {
       // Handle login error
       console.log(error);
@@ -66,12 +65,12 @@ export const LoginModal = (props) => {
       if (res.status == 200) {
         const userObj = {
           token: res.token,
-          user: res
-          // user, 
+          user: res,
+          // user,
         };
         localStorage.setItem("User", userObj);
+        window.location.reload();
       }
-
     } catch (error) {
       // Handle signup error
       console.log(error);
@@ -81,7 +80,7 @@ export const LoginModal = (props) => {
   return (
     <Fragment>
       <Modal
-      /* eslint-disable react/prop-types */
+        /* eslint-disable react/prop-types */
         open={props.openLogin}
         onClose={() => {
           props.setOpenLogin(false);
