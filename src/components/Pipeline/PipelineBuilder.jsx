@@ -112,16 +112,15 @@ const PipelineBuilder = () => {
     const resp = await API.post(
       `/upload-pipeline/${userDetails.user.id}`,
       {
-        headers: { "Content-Type": "application/json" },
-      },
-      {
         pipelineName: pipelineName,
         pipeline: pipeline,
+      },
+      {
+        headers: { "Content-Type": "application/json" },
       }
     );
 
     if (resp.status >= 200 && resp.status < 300) {
-      
       setPipeline({});
       setselectedOp("");
       setinput0("");
@@ -131,12 +130,12 @@ const PipelineBuilder = () => {
       document.getElementById("error_modal").innerText = resp.message;
     }
   };
-
   
   // console.log(Object.keys(operations));
   // console.log(columnData)
   return (
     <React.Fragment>
+      <span className={style.error} id="error"></span>
       <Modal
         /* eslint-disable react/prop-types */
         open={showPipelineName}
@@ -150,14 +149,16 @@ const PipelineBuilder = () => {
       >
         <Box className={style.box}>
           <span id="error_modal"></span>
-          <div className={style.selectionContainer}>
-            <div className={style.loginForm}>
+          <div className={style.formContainer}>
+            <div className={style.pipelineForm}>
               <TextField
                 id="pipelineName"
                 label="Pipeline Name"
                 name="pipelineName"
                 value={pipelineName}
-                onChange={setPipelineName}
+                onChange={(event) => {
+                  setPipelineName(event.target.value);
+                }}
               />
 
               <Button
@@ -173,15 +174,15 @@ const PipelineBuilder = () => {
           </div>
         </Box>
       </Modal>
-      <div>
-        <span id="error"></span>
-        <FormControl>
+      <div className={style.builderFormContainer}>
+        <FormControl className={style.builderForm}>
           <InputLabel id="selectops">Select Operation</InputLabel>
           <Select
             labelId="selectops"
             id="selectops"
             value={selectedOp}
             onChange={(event) => setselectedOp(event.target.value)}
+            className={style.selectOps}
           >
             <MenuItem value="">
               <em>None</em>
@@ -209,6 +210,7 @@ const PipelineBuilder = () => {
                       id={`dropdown${index}`}
                       value={index == 0 ? input0 : input1}
                       key={`dropdown${index}`}
+                      className={style.selectOps}
                       onChange={(event) => {
                         index == 0
                           ? setinput0(event.target.value)
@@ -256,6 +258,8 @@ const PipelineBuilder = () => {
                       id={field}
                       value={index == 0 ? input0 : input1}
                       key={index}
+                      className={style.selectOps}
+                      style={{ marginLeft: "15px" }}
                       onChange={(event) => {
                         index == 0
                           ? setinput0(event.target.value)
@@ -280,16 +284,18 @@ const PipelineBuilder = () => {
             >
               Add layer
             </Button>
-            <Button
-              onClick={() => {
-                setShowPipelineName(true);
-              }}
-            >
-              Finish
-            </Button>
           </FormControl>
         )}
       </div>
+      {pipeline != [] && (
+        <Button
+          onClick={() => {
+            setShowPipelineName(true);
+          }}
+        >
+          Finish
+        </Button>
+      )}
       <div>
         <h3>Layers</h3>
         <ol>
