@@ -17,7 +17,6 @@ import { useNavigate } from "react-router-dom/dist";
 export default function Navbar() {
   const [openLogin, setOpenLogin] = useState(false);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-
   const navigate = useNavigate();
 
   useEffect(() => {
