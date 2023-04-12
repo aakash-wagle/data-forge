@@ -17,6 +17,7 @@ export const navLinks = [
     id: "Get",
     title: "Get Started",
   },
+  
 ];
 
 export const features = [

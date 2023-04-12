@@ -42,14 +42,22 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin-bottom: 20px;
+    width: 70vw;
+    height: auto;
+    background-color: aliceblue;
+    border-radius: 5px;
+    box-shadow: 4px 4px 0px 0px black;
+    padding: 10px;
+
     
 
 }
 
 .builderForm{
     height: 100%;
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -62,6 +70,17 @@
 }
 
 .selectOps{
-    width: 100%;
+    width: 90%;
     margin: 15px;
+
+}
+
+.layerTable{
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
 }
