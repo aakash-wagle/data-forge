@@ -1,6 +1,6 @@
-import { feedback } from "../../../constants";
+import { feedback } from "../../constants";
 import FeedbackCard from "./FeedbackCard";
-import styles from "../../../style";
+import styles from "../../style";
 
 const Testimonials = () => (
   <section id="Review" className={`${styles.paddingY} ${styles.flexCenter} flex-col relative `}>

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import { useState, useEffect } from "react";
 import { get_cols_info } from "../../api";
 import React from "react";

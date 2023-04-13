@@ -13,7 +13,7 @@ import {
 } from "react-router-dom";
 import PipelineBuilder from "./components/Pipeline/PipelineBuilder";
 import styles from "./style";
-import { Footer, Stats, Testimonal, Hero, NavbarNew} from "./components/Navbar/LandingPage";
+import { Footer, Stats, Testimonal, Hero, NavbarNew} from "./components/LandingPage";
 
 export const FileContext = createContext(null);
 

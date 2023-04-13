@@ -1,5 +1,5 @@
-import styles from "../../../style";
-import { arrowUp } from "../../../assets";
+import styles from "../../style";
+import { arrowUp } from "../../assets";
 import React, { useRef } from 'react';
 
 

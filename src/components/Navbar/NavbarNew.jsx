@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { close, logo, menu } from "../../../assets";
-import { navLinks } from "../../../constants";
-import { LoginModal } from "../Login";
+import { close, logo, menu } from "../../assets";
+import { navLinks } from "../../constants";
+import { LoginModal } from "./Login";
+import LoginButton from "./LoginButton";
 
 const NavbarNew = () => {
   const [active, setActive] = useState("Home");
   const [toggle, setToggle] = useState(false);
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-  const [openLogin, setOpenLogin] = useState(false);
-  const navigate = useNavigate();
+  // const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  // const [openLogin, setOpenLogin] = useState(false);
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    let userDetails = localStorage.getItem("User");
-    // console.log(JSON.parse(userDetails));
-    if (localStorage.getItem("User") === null) {
-      setIsUserLoggedIn(false);
-    } else {
-      setIsUserLoggedIn(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   let userDetails = localStorage.getItem("User");
+  //   // console.log(JSON.parse(userDetails));
+  //   if (localStorage.getItem("User") === null) {
+  //     setIsUserLoggedIn(false);
+  //   } else {
+  //     setIsUserLoggedIn(true);
+  //   }
+  // }, []);
 
   return (
     <nav className="w-full flex py-6 justify-between items-center navbar">
-      <LoginModal setOpenLogin={setOpenLogin} openLogin={openLogin} />
       <img src={logo} alt="dataforge" className="w-[200px] h-[42px]" />
 
       <ul className="list-none sm:flex hidden justify-end items-center flex-1">
@@ -38,7 +38,8 @@ const NavbarNew = () => {
             <a href={`#${nav.id}`}>{nav.title}</a>
           </li>
         ))}
-        {isUserLoggedIn ? (
+        <LoginButton />
+        {/* {isUserLoggedIn ? (
                 <React.Fragment>
                   <li
                   key={'mypipelines'}
@@ -91,7 +92,8 @@ const NavbarNew = () => {
                     
                   </li>
                 
-              )}
+              )} */}
+      {/* <LoginModal setOpenLogin={setOpenLogin} openLogin={openLogin} /> */}
       </ul>
 
       <div className="sm:hidden flex flex-1 justify-end items-center">
@@ -121,7 +123,7 @@ const NavbarNew = () => {
             ))}
                 
           </ul>
-          {isUserLoggedIn ? (
+          {/* {isUserLoggedIn ? (
                 <ul>
                   <li
                   key={'mypipelines'}
@@ -171,7 +173,7 @@ const NavbarNew = () => {
                     Login
                   </li>
                 </ul>
-              )}
+              )} */}
         </div>
       </div>
     </nav>
