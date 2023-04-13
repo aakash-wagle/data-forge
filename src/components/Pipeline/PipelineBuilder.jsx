@@ -148,7 +148,7 @@ const PipelineBuilder = () => {
     );
 
     if (resp.status >= 200 && resp.status < 300) {
-      setPipeline({});
+      setPipeline([]);
       setselectedOp("");
       setinput0("");
       setinput1("");
@@ -179,7 +179,7 @@ const PipelineBuilder = () => {
   // console.log(columnData)
   return (
     <React.Fragment>
-      <span className={style.error} id="error"></span>
+      
       <Modal
         /* eslint-disable react/prop-types */
         open={showPipelineName}
@@ -222,6 +222,7 @@ const PipelineBuilder = () => {
 
         <div className={style.builderFormContainer}>
           <FormControl className={style.builderForm}>
+            <span className={style.error} id="error"></span>
             <InputLabel id="selectops">Select Operation</InputLabel>
             <Select
               labelId="selectops"

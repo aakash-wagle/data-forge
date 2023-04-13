@@ -8,19 +8,19 @@ import LoginButton from "./LoginButton";
 const NavbarNew = () => {
   const [active, setActive] = useState("Home");
   const [toggle, setToggle] = useState(false);
-  // const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-  // const [openLogin, setOpenLogin] = useState(false);
-  // const navigate = useNavigate();
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [openLogin, setOpenLogin] = useState(false);
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   let userDetails = localStorage.getItem("User");
-  //   // console.log(JSON.parse(userDetails));
-  //   if (localStorage.getItem("User") === null) {
-  //     setIsUserLoggedIn(false);
-  //   } else {
-  //     setIsUserLoggedIn(true);
-  //   }
-  // }, []);
+  useEffect(() => {
+    let userDetails = localStorage.getItem("User");
+    // console.log(JSON.parse(userDetails));
+    if (localStorage.getItem("User") === null) {
+      setIsUserLoggedIn(false);
+    } else {
+      setIsUserLoggedIn(true);
+    }
+  }, []);
 
   return (
     <nav className="w-full flex py-6 justify-between items-center navbar">
@@ -38,8 +38,8 @@ const NavbarNew = () => {
             <a href={`#${nav.id}`}>{nav.title}</a>
           </li>
         ))}
-        <LoginButton />
-        {/* {isUserLoggedIn ? (
+        
+        {isUserLoggedIn &&
                 <React.Fragment>
                   <li
                   key={'mypipelines'}
@@ -47,6 +47,7 @@ const NavbarNew = () => {
                     active === "My Pipelines" ? "text-white" : "text-dimWhite"
                   } `}
                   // onClick={() =>  navigate("/mypipeline")}
+                  style={{marginLeft: "20px", marginRight: "10px"}}
                   >
                     <a >My Pipelines</a>
                     
@@ -56,11 +57,11 @@ const NavbarNew = () => {
                   className={`font-poppins font-normal cursor-pointer text-[16px] ${
                     active === "Build Pipelines" ? "text-white" : "text-dimWhite"
                   } `}
-                  
+                  style={{marginLeft: "10px", marginRight: "20px"}}
                   >
                     <a onClick={() =>  navigate("/pipeline")}>Build Pipelines</a>
                   </li>
-                  <li
+                  {/* <li
                   key={'logout'}
                   className={`font-poppins font-normal cursor-pointer text-[16px] ${
                     active === "Logout" ? "text-white" : "text-dimWhite"
@@ -72,27 +73,12 @@ const NavbarNew = () => {
                     window.location.reload();
                   }}>Logout</a>
                    
-                  </li>
+                  </li> */}
                   
             
                 </React.Fragment>
-              ) : (
-                
-
-                <li
-                  key={"login"}
-                  className={`font-poppins font-normal cursor-pointer text-[16px] ${
-                    active === "Login" ? "text-white" : "text-dimWhite"
-                  } `}
-                  
-                  >
-                    <a onClick={() => {
-                    setOpenLogin(true);
-                  }}>Login</a>
-                    
-                  </li>
-                
-              )} */}
+              }
+              <LoginButton />
       {/* <LoginModal setOpenLogin={setOpenLogin} openLogin={openLogin} /> */}
       </ul>
 
