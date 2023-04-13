@@ -13,7 +13,8 @@ import {
 } from "react-router-dom";
 import PipelineBuilder from "./components/Pipeline/PipelineBuilder";
 import styles from "./style";
-import { Footer, Stats, Testimonal, Hero, NavbarNew} from "./components/LandingPage";
+import { NavbarNew} from "./components/LandingPage";
+import LandingPage from "./components/LandingPage/LandingPage";
 
 export const FileContext = createContext(null);
 
@@ -36,17 +37,17 @@ function App() {
               <div>
                 <div className={`bg-primary ${styles.flexStart}`}>
                   <div className={`${styles.boxWidth}`}>
-                    <Hero />
+                    <LandingPage />
                   </div>
                 </div>
                 
-                <div className={`bg-primary ${styles.paddingX} ${styles.flexCenter}`}>
+                {/* <div className={`bg-primary ${styles.paddingX} ${styles.flexCenter}`}>
                   <div className={`${styles.boxWidth}`}>
                     <Stats />
                     <Testimonal />
                     <Footer />
                   </div>
-                </div>
+                </div> */}
               </div>
 
             }/>

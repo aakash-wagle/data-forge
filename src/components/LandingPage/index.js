@@ -6,7 +6,6 @@ import Stats from "./stats.jsx";
 import Testimonal from "./Testimonal.jsx";
 import GetStarted from "./GetStarted.jsx";
 
-
 export{
     NavbarNew,
     Hero,
