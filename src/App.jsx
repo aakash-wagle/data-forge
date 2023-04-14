@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import "./App.css";
 import Dropzone from "./components/Dropzone/Dropzone";
 import FileDropper from "./components/FileDropper/FileDropper";
 import FileTable from "./components/FileTable/FileTable";
@@ -22,17 +21,21 @@ const initialState = {
   data: ""
 }
 
-function App() {
-  const [fileState, setFileState] = useState(initialState);
+function App(){
+  const [fileState,setFileState] = useState(initialState);
 
-  return (
+  return(
     <div className="App">
-      <FileContext.Provider value={{ fileState, setFileState }}>
-        <BrowserRouter>
-        {/* <Navbar /> */}
-        <NavbarNew />
+      <FileContext.Provider value={{ fileState, setFileState}}>
+        <BrowserRouter>        
+        <div className="bg-primary w-full overflow-hidden">
+          <div className={`${styles.paddingX} ${styles.flexCenter}`}>
+            <div className={`${styles.boxWidth}`}>
+              <NavbarNew />
+            </div>
+          </div>
           <Routes>
-            <Route path="/"element={
+          <Route path="/"element={
               <div>
                 <div className={`bg-primary ${styles.flexStart}`}>
                   <div className={`${styles.boxWidth}`}>
@@ -48,33 +51,27 @@ function App() {
                   </div>
                 </div> */}
               </div>
-
             }/>
 
-           
             <Route path="/filedropper" element={
 
-              <Stack
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-                spacing={5}
-              >
-                <FileDropper />
-                <FileTable />
-              </Stack>
+            <Stack
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
+              spacing={5}
+            >
+              <FileDropper />
+              <FileTable />
+            </Stack>
             }/>
-            <Route path="/pipeline" element={<PipelineBuilder/>}/>
-              
-        
-     
+            <Route path="/pipeline" element={<PipelineBuilder/>}/>            
           </Routes>
-
+        </div>
         </BrowserRouter>
-        
       </FileContext.Provider>
     </div>
-  );
+  )
 }
 
 export default App;
