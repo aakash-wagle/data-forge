@@ -153,6 +153,14 @@
   filter: blur(750px);
 }
 
+html,body
+{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+}
+
 /* a {
   font-weight: 500;
   color: #646cff;

@@ -1,6 +1,5 @@
 import { createContext, useState } from "react";
 import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
 import Dropzone from "./components/Dropzone/Dropzone";
 import FileDropper from "./components/FileDropper/FileDropper";
 import FileTable from "./components/FileTable/FileTable";
