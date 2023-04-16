@@ -25,7 +25,7 @@ const Hero = () => {
         </div>
 
         <h1 className="font-poppins font-semibold ss:text-[68px] text-[52px] text-white ss:leading-[100.8px] leading-[75px] w-full">
-          Data Preprocessing Tool.
+          Data Preprocessing Tool
         </h1>
         <p className={`${styles.paragraph} max-w-[470px] mt-5`}>
           Our website is dedicated to provide comprehensive tools and resources to streamline the data preprocessing process and unlock the full potential of your data.

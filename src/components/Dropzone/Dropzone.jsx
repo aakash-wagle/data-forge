@@ -4,7 +4,7 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
-import { FileContext } from "../../App";
+import { FileContext } from "../../Contexts/FileContext";
 import * as api from "../../api";
 
 const Item = styled(Paper)(({ theme }) => ({

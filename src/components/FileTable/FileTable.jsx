@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { FileContext } from "../../App";
+import { FileContext } from "../../Contexts/FileContext";
 import * as api from "../../api";
 import { Button } from "@mui/material";
 import { API } from "../../api";
@@ -35,16 +35,10 @@ export default function FileTable() {
       setColNamesState(() => Object.keys(fileState.data[0]));
       
     }
-
-
     // return () => {
     //   // cleanup code
     // }
   }, [fileState]);
-
-
-
-
   // const getDatasetHead = async () => {
   //   const userObj = JSON.parse(localStorage.getItem("User"))
   //   const rows = await api.getDatasetHead(userObj.user.id, fileState)
@@ -53,8 +47,6 @@ export default function FileTable() {
 
   return (
     <div>
-      
-
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>

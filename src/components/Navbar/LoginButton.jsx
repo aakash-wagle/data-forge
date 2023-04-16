@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 import StickyNote2Icon from "@mui/icons-material/StickyNote2";
@@ -7,9 +6,10 @@ import ConstructionIcon from "@mui/icons-material/Construction";
 import { useNavigate } from "react-router-dom";
 import { ButtonGroup, Button } from "@mui/material";
 import { LoginModal } from "./Login";
+import { LoginModalContext } from "../../Contexts/LoginModalContext";
 
 const LoginButton = () => {
-  const [openLogin, setOpenLogin] = useState(false);
+  const {openLogin, setOpenLogin} = useContext(LoginModalContext);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const navigate = useNavigate();
 
