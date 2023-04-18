@@ -1,10 +1,12 @@
-.box{
-    background-color: aliceblue;
-    border-radius: 5px;
-    /* box-shadow: 4px 4px 0px 0px black; */
-    height: 70vh;
-    width: 40vw;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
 
+.box{
+    background: rgba(255, 255, 255, 0.87);
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    border-radius: 8px;
+    /* box-shadow: 4px 4px 0px 0px black; */
+    height: 78vh;
+    width: 40vw;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -18,7 +20,6 @@
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
-
 }
 
 .form{
@@ -29,4 +30,8 @@
     padding-left: 10px;
     padding-right: 10px;
     height: 50vh;
+    font-size: 16px;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
 }

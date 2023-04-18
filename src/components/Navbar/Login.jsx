@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 // import { display } from "@mui/system";
 import * as api from "../../api";
+import Google from "./Google";
 
 export const LoginModal = (props) => {
   const [loginForm, setLoginForm] = useState({
@@ -91,13 +92,13 @@ export const LoginModal = (props) => {
         aria-describedby="modal-modal-description"
       >
         <Box className={style.box}>
-          <div className={style.selectionContainer}>
+          <div className={style.Container}>
             <div className={style.selection}>
               <Button
                 onClick={() => {
                   setLogin(true);
                 }}
-                style={{ fontWeight: login ? "bold" : "normal" }}
+                style={{ fontWeight: login ? "bold" : "normal", color:"Background", marginTop: "7px" }}
               >
                 Login
               </Button>
@@ -105,7 +106,7 @@ export const LoginModal = (props) => {
                 onClick={() => {
                   setLogin(false);
                 }}
-                style={{ fontWeight: !login ? "bold" : "normal" }}
+                style={{ fontWeight: !login ? "bold" : "normal", color:"Background", marginTop: "7px"}}
               >
                 Sign Up
               </Button>
@@ -134,7 +135,7 @@ export const LoginModal = (props) => {
                     value={loginForm.password}
                     onChange={handleInputChange}
                   />
-                  <Button type="submit" variant="contained" color="primary">
+                  <Button type="submit" variant="contained" color="primary" style={{ color: "ButtonFace"}} className={`py-4 px-6 font-poppins font-medium text-[18px] text-primary bg-blue-gradient rounded-[10px] outline-none`}>
                     Login
                   </Button>
                 </form>
@@ -169,14 +170,20 @@ export const LoginModal = (props) => {
                     value={signupForm.password}
                     onChange={handleInputChange}
                   />
-                  <Button type="submit" variant="contained" color="primary">
+
+                  <Button type="submit" variant="contained" color="primary" style={{ color: "ButtonFace"}} className={`py-4 px-6 font-poppins font-medium text-[18px] text-primary bg-blue-gradient rounded-[10px] outline-none`}>
                     Sign up
                   </Button>
                 </form>
               </div>
             )}
           </div>
-          <Button>Google login</Button>
+
+          <div>
+            <p style={{textAlign: "center", color: "Background", marginBottom: "20px"}}> OR </p>
+          </div>
+
+          <Google/>
         </Box>
       </Modal>
     </Fragment>
