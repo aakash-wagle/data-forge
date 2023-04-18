@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 // import { display } from "@mui/system";
 import * as api from "../../api";
-import Google from "./Google";
+import GoogleButton from "./GoogleButton";
 
 export const LoginModal = (props) => {
   const [loginForm, setLoginForm] = useState({
@@ -21,7 +21,7 @@ export const LoginModal = (props) => {
     password: "",
   });
 
-  const [login, setLogin] = useState(true);
+  const [isLogin, setiSLogin] = useState(true);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -94,8 +94,8 @@ export const LoginModal = (props) => {
         <Box className={style.box}>
           <div className={style.Container}>
             {/* <div className={style.selection}> */}
-            <Tabs variant="fullWidth" value={login ? 0 : 1} onChange={(event, newValue) => {
-                setLogin( newValue == 0 ? 1 : 0);
+            <Tabs variant="fullWidth" value={isLogin ? 0 : 1} onChange={(event, newValue) => {
+                setiSLogin( newValue == 0 ? 1 : 0);
               }}
             >
               <Tab label="Login" value={0} style={{ color: 'black', fontSize: "20px"}}/>
@@ -103,7 +103,7 @@ export const LoginModal = (props) => {
             </Tabs>
               {/* <Button
                 onClick={() => {
-                  setLogin(true);
+                  setiSLogin(true);
                 }}
                 style={{ fontWeight: login ? "bold" : "normal", color:"Background", marginTop: "7px", fontSize: "20px" }}
               >
@@ -111,14 +111,14 @@ export const LoginModal = (props) => {
               </Button>
               <Button
                 onClick={() => {
-                  setLogin(false);
+                  setiSLogin(false);
                 }}
                 style={{ fontWeight: !login ? "bold" : "normal", color:"Background", marginTop: "7px", fontSize: "20px"}}
               >
                 Sign Up
               </Button> */}
             {/* </div> */}
-            {login ? (
+            {isLogin ? (
               <div className={style.loginForm}>
                 <form
                   method="post"
@@ -190,7 +190,7 @@ export const LoginModal = (props) => {
             <p style={{textAlign: "center", color: "Background", marginBottom: "20px"}}> OR </p>
           </div>
 
-          <Google/>
+          <GoogleButton isLogin={isLogin}/>
         </Box>
       </Modal>
     </Fragment>
