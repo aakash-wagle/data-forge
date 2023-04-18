@@ -47,7 +47,7 @@ const NavbarNew = () => {
                     active === "My Pipelines" ? "text-white" : "text-dimWhite"
                   } `}
                   // onClick={() =>  navigate("/mypipeline")}
-                  style={{marginLeft: "20px", marginRight: "10px"}}
+                  style={{marginLeft: "35px", marginRight: "15px"}}
                   >
                     <a >My Pipelines</a>
                     
@@ -57,7 +57,7 @@ const NavbarNew = () => {
                   className={`font-poppins font-normal cursor-pointer text-[16px] ${
                     active === "Build Pipelines" ? "text-white" : "text-dimWhite"
                   } `}
-                  style={{marginLeft: "10px", marginRight: "20px"}}
+                  style={{marginLeft: "15px", marginRight: "20px"}}
                   >
                     <a onClick={() =>  navigate("/pipeline")}>Build Pipelines</a>
                   </li>

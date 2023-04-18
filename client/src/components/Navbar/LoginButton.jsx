@@ -48,6 +48,7 @@ const LoginButton = () => {
           </div>
         ) : (
           <Button
+          style={{ marginLeft: '18px' }}
             onClick={() => {
               setOpenLogin(true);
             }}

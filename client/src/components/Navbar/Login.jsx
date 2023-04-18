@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Fragment } from "react";
-import { Modal, Box } from "@mui/material";
+import { Modal, Box, Tab, Tabs } from "@mui/material";
 import style from "./Login.module.css";
 // import { makeStyles } from '@material-ui/core/styles';
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 // import { display } from "@mui/system";
 import * as api from "../../api";
+import GoogleButton from "./GoogleButton";
 
 export const LoginModal = (props) => {
   const [loginForm, setLoginForm] = useState({
@@ -20,7 +21,7 @@ export const LoginModal = (props) => {
     password: "",
   });
 
-  const [login, setLogin] = useState(true);
+  const [isLogin, setiSLogin] = useState(true);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -91,26 +92,33 @@ export const LoginModal = (props) => {
         aria-describedby="modal-modal-description"
       >
         <Box className={style.box}>
-          <div className={style.selectionContainer}>
-            <div className={style.selection}>
-              <Button
+          <div className={style.Container}>
+            {/* <div className={style.selection}> */}
+            <Tabs variant="fullWidth" value={isLogin ? 0 : 1} onChange={(event, newValue) => {
+                setiSLogin( newValue == 0 ? 1 : 0);
+              }}
+            >
+              <Tab label="Login" value={0} style={{ color: 'black', fontSize: "20px"}}/>
+              <Tab label="Sign Up" value={1} style={{ color: 'black', fontSize: "20px"}}/>
+            </Tabs>
+              {/* <Button
                 onClick={() => {
-                  setLogin(true);
+                  setiSLogin(true);
                 }}
-                style={{ fontWeight: login ? "bold" : "normal" }}
+                style={{ fontWeight: login ? "bold" : "normal", color:"Background", marginTop: "7px", fontSize: "20px" }}
               >
                 Login
               </Button>
               <Button
                 onClick={() => {
-                  setLogin(false);
+                  setiSLogin(false);
                 }}
-                style={{ fontWeight: !login ? "bold" : "normal" }}
+                style={{ fontWeight: !login ? "bold" : "normal", color:"Background", marginTop: "7px", fontSize: "20px"}}
               >
                 Sign Up
-              </Button>
-            </div>
-            {login ? (
+              </Button> */}
+            {/* </div> */}
+            {isLogin ? (
               <div className={style.loginForm}>
                 <form
                   method="post"
@@ -134,7 +142,7 @@ export const LoginModal = (props) => {
                     value={loginForm.password}
                     onChange={handleInputChange}
                   />
-                  <Button type="submit" variant="contained" color="primary">
+                  <Button type="submit" variant="contained" color="primary" style={{ color: "ButtonFace"}} className={`py-4 px-6 font-poppins font-medium text-[18px] text-primary bg-blue-gradient rounded-[10px] outline-none`}>
                     Login
                   </Button>
                 </form>
@@ -169,14 +177,20 @@ export const LoginModal = (props) => {
                     value={signupForm.password}
                     onChange={handleInputChange}
                   />
-                  <Button type="submit" variant="contained" color="primary">
+
+                  <Button type="submit" variant="contained" color="primary" style={{ color: "ButtonFace"}} className={`py-4 px-6 font-poppins font-medium text-[18px] text-primary bg-blue-gradient rounded-[10px] outline-none`}>
                     Sign up
                   </Button>
                 </form>
               </div>
             )}
           </div>
-          <Button>Google login</Button>
+
+          <div>
+            <p style={{textAlign: "center", color: "Background", marginBottom: "20px"}}> OR </p>
+          </div>
+
+          <GoogleButton isLogin={isLogin}/>
         </Box>
       </Modal>
     </Fragment>

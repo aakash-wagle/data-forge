@@ -14,6 +14,7 @@ import star from "./Star.svg";
 import menu from "./menu.svg";
 import close from "./close.svg";
 import google from "./google.svg";
+import googleicon from "./googleicon.png";
 import apple from "./apple.svg";
 import arrowUp from "./arrow-up.svg";
 import discount from "./Discount.svg";
@@ -42,6 +43,7 @@ export {
   menu,
   close,
   google,
+  googleicon,
   apple,
   arrowUp,
   discount,
