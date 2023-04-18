@@ -14,16 +14,16 @@ const Google = () => {
         color: "white",
         border: "none",
         boxShadow: "none",
-        width: "250px",
+        width: "500px",
         height: "50px",
         }}
     >
         <img
         src="https://img.icons8.com/color/48/000000/google-logo.png"
         alt="google"
-        style={{ marginRight: "10px", width: "24px", height: "24px" }}
+        style={{ marginRight: "20px", width: "24px", height: "24px" }}
         />
-        <span style={{ fontSize: "14px" }}>Sign in with Google</span>
+        <span style={{ fontSize: "15px" }}>Sign in with Google</span>
     </button>
   )
 }

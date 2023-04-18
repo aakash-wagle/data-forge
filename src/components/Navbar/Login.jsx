@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Fragment } from "react";
-import { Modal, Box } from "@mui/material";
+import { Modal, Box, Tab, Tabs } from "@mui/material";
 import style from "./Login.module.css";
 // import { makeStyles } from '@material-ui/core/styles';
 import TextField from "@mui/material/TextField";
@@ -93,12 +93,19 @@ export const LoginModal = (props) => {
       >
         <Box className={style.box}>
           <div className={style.Container}>
-            <div className={style.selection}>
-              <Button
+            {/* <div className={style.selection}> */}
+            <Tabs variant="fullWidth" value={login ? 0 : 1} onChange={(event, newValue) => {
+                setLogin( newValue == 0 ? 1 : 0);
+              }}
+            >
+              <Tab label="Login" value={0} style={{ color: 'black', fontSize: "20px"}}/>
+              <Tab label="Sign Up" value={1} style={{ color: 'black', fontSize: "20px"}}/>
+            </Tabs>
+              {/* <Button
                 onClick={() => {
                   setLogin(true);
                 }}
-                style={{ fontWeight: login ? "bold" : "normal", color:"Background", marginTop: "7px" }}
+                style={{ fontWeight: login ? "bold" : "normal", color:"Background", marginTop: "7px", fontSize: "20px" }}
               >
                 Login
               </Button>
@@ -106,11 +113,11 @@ export const LoginModal = (props) => {
                 onClick={() => {
                   setLogin(false);
                 }}
-                style={{ fontWeight: !login ? "bold" : "normal", color:"Background", marginTop: "7px"}}
+                style={{ fontWeight: !login ? "bold" : "normal", color:"Background", marginTop: "7px", fontSize: "20px"}}
               >
                 Sign Up
-              </Button>
-            </div>
+              </Button> */}
+            {/* </div> */}
             {login ? (
               <div className={style.loginForm}>
                 <form
