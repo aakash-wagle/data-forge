@@ -22,7 +22,7 @@ export const API = axios.create({
 // API.interceptors.request.use((req) => {
 //   if (localStorage.getItem("User")) {
 //     req.headers.Authorization = `Bearer ${
-//       JSON.parse(localStorage.getItem("User")).token
+//       JSON.parse(localStorage.getItem("User")).user.token
 //     }`;
 //   }
 //   console.log("Logging interceptor's populated header");

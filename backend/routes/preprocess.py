@@ -28,7 +28,7 @@ async def get_csv_column_info(user_id: str):
     
     return column_info
 
-@pre.get("/rename_colums/{user_id}/{old_name}/{new_name}")
+@pre.get("/rename_columns/{user_id}/{old_name}/{new_name}")
 async def rename_columns(user_id:str, old_name:str, new_name:str):
     global collection
     result = collection.find_one({"id": user_id})

@@ -16,6 +16,9 @@ import { Modal, Box } from "@mui/material";
 import style from "./Pipeline.module.css";
 
 import { API } from "../../api";
+import { operations, opsRoutes } from "../../constants";
+
+
 // import Button from './../Navbar/LandingPage/Button';
 
 const PipelineBuilder = () => {
@@ -57,33 +60,33 @@ const PipelineBuilder = () => {
     //   let cols =  get_cols_info(userDetails.user.id);
   }, []);
 
-  const operations = {
-    "Rename Column": {
-      "Old Name": ["any", "drop"],
-      "New Name": ["object", "text"],
-    },
-    "Drop Column": { "Column Name": ["any", "drop"] },
-    "Fill Empty Cells": {
-      "Column Name": ["any", "drop"],
-      "Replace term": ["object", "text"],
-    },
-    "Drop Empty Cells": { "Column Name": ["any", "drop"] },
-    // "One Hot Encoding": {
-    //   "Column Names separaed by commas": ["object", "mult"],
-    // },
-    Tokenize: { "Column Name": ["object", "drop"] },
-    "Remove Stopwords": { "Column Name": ["object", "drop"] },
-  };
+  // const operations = {
+  //   "Rename Column": {
+  //     "Old Name": ["any", "drop"],
+  //     "New Name": ["object", "text"],
+  //   },
+  //   "Drop Column": { "Column Name": ["any", "drop"] },
+  //   "Fill Empty Cells": {
+  //     "Column Name": ["any", "drop"],
+  //     "Replace term": ["object", "text"],
+  //   },
+  //   "Drop Empty Cells": { "Column Name": ["any", "drop"] },
+  //   // "One Hot Encoding": {
+  //   //   "Column Names separaed by commas": ["object", "mult"],
+  //   // },
+  //   Tokenize: { "Column Name": ["object", "drop"] },
+  //   "Remove Stopwords": { "Column Name": ["object", "drop"] },
+  // };
 
-  const opsRoutes = {
-    "Rename Column": "rename_colums",
-    "Drop Column": "drop_columns",
-    "Fill Empty Cells": "fill_nan",
-    "Drop Empty Cells": "drop_nan",
-    "One Hot Encoding": "one_hot_encoding",
-    "Tokenize": "tokenize",
-    "Remove Stopwords": "remove_stopwords",
-  };
+  // const opsRoutes = {
+  //   "Rename Column": "rename_columns",
+  //   "Drop Column": "drop_columns",
+  //   "Fill Empty Cells": "fill_nan",
+  //   "Drop Empty Cells": "drop_nan",
+  //   "One Hot Encoding": "one_hot_encoding",
+  //   "Tokenize": "tokenize",
+  //   "Remove Stopwords": "remove_stopwords",
+  // };
 
   const exitHandler = () => {
     setPipeline([]);

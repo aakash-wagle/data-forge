@@ -5,6 +5,7 @@ from bson import ObjectId
 import pandas as pd
 from config.db import db,users
 import json
+import copy
 
 pipe = APIRouter()
 
@@ -37,22 +38,39 @@ async def upload_csv(user_id:str, pipeline:PipelineModel):
 
 @pipe.get("/get-pipeline/{user_id}")
 async def get_pipeline(user_id:str):
-    # return {"message": "Pipelines not found"}
     # Verify the user exists in the database
     user = users.find_one({"_id": ObjectId(user_id)})
-    print("User",user)
+    # print("User",user)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
         # return {"message": "User not found"}
     
-    data = []
-    pipeLine = db["pipelines"].find({"id":user_id}, {'_id': 0})
-    print("pipeLine",pipeLine)
-    if not pipeLine:
+    resPipelines = []
+    resPipelineTemplate = {
+        "name":"",
+        "operations":[],
+    }
+    operationTemplate = {
+        "opName": "",
+        "values": [],
+    }
+    mongoPipeLines = db["pipelines"].find({"id":user_id}, {'_id': 0})
+    # print("pipeLine",mongoPipeLines)
+    if not mongoPipeLines:
         raise HTTPException(status_code=404, detail="Pipelines not found")
         # return {"message": "Pipelines not found"}
-    for doc in pipeLine:
-        print("Doc: ", doc)
-        data.append(doc)
-    
-    return {"message": "Pipelines fetched successfully", "data": data}
+    for obj in mongoPipeLines:
+        # print("Doc: ", obj)
+        # print("pipeline_name: ", obj["pipeline_name"])
+        resPipeline = copy.deepcopy(resPipelineTemplate)
+        # print("resPipeline after clear: ", resPipeline)
+        resPipeline["name"] = obj["pipeline_name"]
+        for operation in obj["pipeline"]:
+            op = copy.deepcopy(operationTemplate)
+            op["opName"] = operation[0]
+            op["values"] = operation[1:]
+            resPipeline["operations"].append(op)
+        # print("operations: ", resPipeline["operations"])
+        # print("resPipeline: ", resPipeline)
+        resPipelines.append(resPipeline)
+    return {"message": "Pipelines fetched successfully", "pipelines": resPipelines}
