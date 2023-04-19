@@ -2,7 +2,7 @@ import styles from "../../style";
 import { arrowUp } from "../../assets";
 import React, { useContext, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { LoginModalContext } from "../../Contexts/LoginModalContext";
+import { LoginModalContext } from "../../contexts/LoginModalContext";
 import { Button } from "@mui/material";
 import { LoginModal } from "../Navbar/Login";
 

@@ -38,48 +38,32 @@ const NavbarNew = () => {
             <a href={`#${nav.id}`}>{nav.title}</a>
           </li>
         ))}
-        
-        {isUserLoggedIn &&
-                <React.Fragment>
-                  <li
-                  key={'mypipelines'}
-                  className={`font-poppins font-normal cursor-pointer text-[16px] ${
-                    active === "My Pipelines" ? "text-white" : "text-dimWhite"
-                  } `}
-                  // onClick={() =>  navigate("/mypipeline")}
-                  style={{marginLeft: "35px", marginRight: "15px"}}
-                  >
-                    <a >My Pipelines</a>
-                    
-                  </li>
-                  <li
-                  key={'buildpipelines'}
-                  className={`font-poppins font-normal cursor-pointer text-[16px] ${
-                    active === "Build Pipelines" ? "text-white" : "text-dimWhite"
-                  } `}
-                  style={{marginLeft: "15px", marginRight: "20px"}}
-                  >
-                    <a onClick={() =>  navigate("/pipeline")}>Build Pipelines</a>
-                  </li>
-                  {/* <li
-                  key={'logout'}
-                  className={`font-poppins font-normal cursor-pointer text-[16px] ${
-                    active === "Logout" ? "text-white" : "text-dimWhite"
-                  } `}
-                  
-                  >
-                    <a onClick={() => {
-                    localStorage.removeItem("User");
-                    window.location.reload();
-                  }}>Logout</a>
-                   
-                  </li> */}
-                  
-            
-                </React.Fragment>
-              }
-              <LoginButton />
-      {/* <LoginModal setOpenLogin={setOpenLogin} openLogin={openLogin} /> */}
+
+        {isUserLoggedIn && (
+          <React.Fragment>
+            <li
+              key={"mypipelines"}
+              className={`font-poppins font-normal cursor-pointer text-[16px] ${
+                active === "My Pipelines" ? "text-white" : "text-dimWhite"
+              } `}
+              // onClick={() =>  navigate("/mypipeline")}
+              style={{ marginLeft: "35px", marginRight: "15px" }}
+            >
+              <a onClick={() => navigate("/my-pipelines")}>My Pipelines</a>
+            </li>
+            <li
+              key={"buildpipelines"}
+              className={`font-poppins font-normal cursor-pointer text-[16px] ${
+                active === "Build Pipelines" ? "text-white" : "text-dimWhite"
+              } `}
+              style={{ marginLeft: "15px", marginRight: "20px" }}
+            >
+              <a onClick={() => navigate("/pipeline")}>Build Pipelines</a>
+            </li>
+          </React.Fragment>
+        )}
+        <LoginButton />
+        {/* <LoginModal setOpenLogin={setOpenLogin} openLogin={openLogin} /> */}
       </ul>
 
       <div className="sm:hidden flex flex-1 justify-end items-center">
@@ -107,59 +91,7 @@ const NavbarNew = () => {
                 <a href={`#${nav.id}`}>{nav.title}</a>
               </li>
             ))}
-                
           </ul>
-          {/* {isUserLoggedIn ? (
-                <ul>
-                  <li
-                  key={'mypipelines'}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === "My Pipelines" ? "text-white" : "text-dimWhite"
-                  } `}
-                  // onClick={() =>  navigate("/mypipeline")}
-                  >
-                    My Pipelines
-                  </li>
-                  <li
-                  key={'buildpipelines'}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === "Build Pipelines" ? "text-white" : "text-dimWhite"
-                  } `}
-                  onClick={() =>  navigate("/pipeline")}
-                  >
-                    Build Pipelines
-                  </li>
-                  <li
-                  key={'logout'}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === "Logout" ? "text-white" : "text-dimWhite"
-                  } `}
-                  onClick={() => {
-                    localStorage.removeItem("User");
-                    window.location.reload();
-                  }}
-                  >
-                    Logout
-                  </li>
-                  
-            
-                </ul>
-              ) : (
-                <ul>
-
-                <li
-                  key={"login"}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === "Login" ? "text-white" : "text-dimWhite"
-                  } `}
-                  onClick={() => {
-                    setOpenLogin(true);
-                  }}
-                  >
-                    Login
-                  </li>
-                </ul>
-              )} */}
         </div>
       </div>
     </nav>

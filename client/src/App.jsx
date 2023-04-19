@@ -8,8 +8,9 @@ import PipelineBuilder from "./components/Pipeline/PipelineBuilder";
 import styles from "./style";
 import { NavbarNew } from "./components/LandingPage";
 import LandingPage from "./components/LandingPage/LandingPage";
-import FileProvider from "./Contexts/FileContext";
-import LoginModalProvider from "./Contexts/LoginModalContext";
+import FileProvider from "./contexts/FileContext";
+import LoginModalProvider from "./contexts/LoginModalContext";
+import PipelineHistory from "./components/Pipeline/PipelineHistory";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
                   }
                 />
                 <Route path="/pipeline" element={<PipelineBuilder />} />
+                <Route path="/my-pipelines" element={<PipelineHistory />} />
               </Routes>
             </div>
           </BrowserRouter>

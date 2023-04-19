@@ -1,4 +1,4 @@
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi import APIRouter
 from models.pipelineModel import PipelineModel
 from bson import ObjectId
@@ -37,13 +37,22 @@ async def upload_csv(user_id:str, pipeline:PipelineModel):
 
 @pipe.get("/get-pipeline/{user_id}")
 async def get_pipeline(user_id:str):
+    # return {"message": "Pipelines not found"}
     # Verify the user exists in the database
     user = users.find_one({"_id": ObjectId(user_id)})
+    print("User",user)
     if not user:
-        return {"message": "User not found"}
+        raise HTTPException(status_code=404, detail="User not found")
+        # return {"message": "User not found"}
     
-    pipeLine = db["pipelines"].find({"id":user_id})
+    data = []
+    pipeLine = db["pipelines"].find({"id":user_id}, {'_id': 0})
+    print("pipeLine",pipeLine)
     if not pipeLine:
-        return {"message": "Pipelines not found"}
+        raise HTTPException(status_code=404, detail="Pipelines not found")
+        # return {"message": "Pipelines not found"}
+    for doc in pipeLine:
+        print("Doc: ", doc)
+        data.append(doc)
     
-    return {"message": "Pipelines fetched successfully", "data":pipeLine}
+    return {"message": "Pipelines fetched successfully", "data": data}

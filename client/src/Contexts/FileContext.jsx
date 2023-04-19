@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useContext, createContext } from "react";
 
 export const FileContext = createContext(null);

@@ -6,7 +6,7 @@ import ConstructionIcon from "@mui/icons-material/Construction";
 import { useNavigate } from "react-router-dom";
 import { ButtonGroup, Button } from "@mui/material";
 import { LoginModal } from "./Login";
-import { LoginModalContext } from "../../Contexts/LoginModalContext";
+import { LoginModalContext } from "../../contexts/LoginModalContext";
 
 const LoginButton = () => {
   const {openLogin, setOpenLogin} = useContext(LoginModalContext);

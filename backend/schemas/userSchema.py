@@ -8,6 +8,5 @@ def user_serializer(user) -> dict:
        
     }
 
-
 def users_serializer(users) -> list:
     return [user_serializer(user) for user in users] 

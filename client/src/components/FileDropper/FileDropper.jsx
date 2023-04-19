@@ -1,7 +1,7 @@
 import { Box, Container } from "@mui/material";
 import { useState, useRef, useContext, useEffect } from "react";
 // import FileContext from "../Contexts/FileContext";
-import { FileContext } from "../../Contexts/FileContext";
+import { FileContext } from "../../contexts/FileContext";
 import "./styles.css";
 import * as api from "../../api";
 import {Button} from "@mui/material";

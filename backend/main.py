@@ -1,5 +1,7 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+# from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware import Middleware
+from starlette.middleware.cors import CORSMiddleware
 from routes.crud import user
 from routes.login import userlogin
 from routes.fileupload import file
@@ -13,15 +15,33 @@ import os
 # os.environ["MONGODB_URI"] = config("MONGODB_URI")
 # os.environ["SECRET_KEY"] = config("SECRET_KEY")
 
+origins = [
+    "http://localhost",
+    "http://localhost:5174",
+    "http://192.168.17.1:5174",
+    "http://192.168.222.1:5174",
+    "http://192.168.43.88:5174",
+]
 
-app = FastAPI()
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+middleware = [
+    Middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        # allow_credentials=True,
+        # allow_methods=['*'],
+        # allow_headers=['*']
+    )
+]
+
+app = FastAPI(middleware=middleware)
+# app = FastAPI()
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*"],
+#     # allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 app.include_router(user)
 app.include_router(userlogin)
 app.include_router(file)

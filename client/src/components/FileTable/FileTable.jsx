@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { FileContext } from "../../Contexts/FileContext";
+import { FileContext } from "../../contexts/FileContext";
 import * as api from "../../api";
 import { Button } from "@mui/material";
 import { API } from "../../api";
