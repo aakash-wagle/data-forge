@@ -23,25 +23,25 @@ origins = [
     "http://192.168.43.88:5174",
 ]
 
-middleware = [
-    Middleware(
-        CORSMiddleware,
-        allow_origins=["*"],
-        # allow_credentials=True,
-        # allow_methods=['*'],
-        # allow_headers=['*']
-    )
-]
+# middleware = [
+#     Middleware(
+#         CORSMiddleware,
+#         allow_origins=["*"],
+#         # allow_credentials=True,
+#         # allow_methods=['*'],
+#         # allow_headers=['*']
+#     )
+# ]
+# app = FastAPI(middleware=middleware)
 
-app = FastAPI(middleware=middleware)
-# app = FastAPI()
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=["*"],
-#     # allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
+app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 app.include_router(user)
 app.include_router(userlogin)
 app.include_router(file)
