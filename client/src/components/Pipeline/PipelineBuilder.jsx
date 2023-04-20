@@ -14,7 +14,7 @@ import { Form } from "react-router-dom/dist";
 import { useNavigate } from "react-router-dom/dist";
 import { Modal, Box } from "@mui/material";
 import style from "./Pipeline.module.css";
-
+import Footer from "../LandingPage/Footer";
 import { API } from "../../api";
 import { operations, opsRoutes } from "../../constants";
 
@@ -119,7 +119,7 @@ const PipelineBuilder = () => {
       document.getElementById("error").innerText = resp.message;
     }
   };
-
+  
   const downloadFile = (resp) => {
     
     const blob = new Blob([resp], { type: 'text/csv' });
@@ -357,6 +357,9 @@ const PipelineBuilder = () => {
             return <li key={index}>{index+1}. {process[0]}</li>;
           })}
         </ol>
+      </div>
+      <div style={{display: 'flex', justifyContent: 'center'}}>
+        <Footer />
       </div>
     </React.Fragment>
   );

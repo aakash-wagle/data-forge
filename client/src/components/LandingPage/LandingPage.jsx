@@ -5,6 +5,7 @@ import Testimonal from "./Testimonal.jsx";
 import styles from "../../style.js";
 
 import React from 'react'
+import Documentation from "./Documentation.jsx";
 
 const LandingPage = () => {
   return (
@@ -18,6 +19,7 @@ const LandingPage = () => {
         <div className={`bg-primary ${styles.paddingX} ${styles.flexCenter}`}>
             <div className={`${styles.boxWidth}`}>
                 <Stats />
+                <Documentation />
                 <Testimonal />
                 <Footer />
             </div>
