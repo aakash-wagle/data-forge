@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { close, logo, menu } from "../../assets";
 import { navLinks } from "../../constants";
 import { LoginModal } from "./Login";
 import LoginButton from "./LoginButton";
+import { LoginModalContext } from "../../contexts/LoginModalContext";
 
 const NavbarNew = () => {
   const [active, setActive] = useState("Home");
   const [toggle, setToggle] = useState(false);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-  const [openLogin, setOpenLogin] = useState(false);
+  const { openLogin, setOpenLogin } = useContext(LoginModalContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,7 +34,19 @@ const NavbarNew = () => {
             className={`font-poppins font-normal cursor-pointer text-[16px] ${
               active === nav.title ? "text-white" : "text-dimWhite"
             } ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}
-            onClick={() => setActive(nav.title)}
+            onClick={() => {
+              setActive(nav.title);
+              if (nav.id === "Get") {
+                console.log("nav.id = Get");
+                if (localStorage.getItem("User")) {
+                  console.log("navigate");
+                  navigate("/filedropper");
+                } else {
+                  console.log("setOpenLogin");
+                  setOpenLogin(true);
+                }
+              }
+            }}
           >
             <a href={`#${nav.id}`}>{nav.title}</a>
           </li>
