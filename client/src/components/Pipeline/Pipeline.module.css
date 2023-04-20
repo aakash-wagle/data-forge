@@ -1,5 +1,5 @@
 .box{
-    background-color: aliceblue;
+    background-color: rgb(255, 255, 255);
     border-radius: 5px;
     /* box-shadow: 4px 4px 0px 0px black; */
     height: 30vh;
@@ -21,8 +21,6 @@
 
 }
 
-
-
 .pipelineForm{
     height: 100%;
     display: flex;
@@ -38,21 +36,19 @@
     font-size: 12px;
     margin-top: 5px;
 }
+
 .builderFormContainer{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
-    width: 70vw;
+    width: 100vw;
     height: auto;
-    background-color: aliceblue;
+    background-color: rgb(12, 12, 12);
     border-radius: 5px;
-    box-shadow: 4px 4px 0px 0px black;
+    box-shadow: 4px 4px 0px 0px rgb(0, 0, 0);
     padding: 10px;
-
-    
-
 }
 
 .builderForm{
@@ -72,13 +68,17 @@
 .selectOps{
     width: 90%;
     margin: 15px;
-
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
 }
 
 .layerTable{
-    width: 100%;
+    width: 98%;
     height: 100%;
-    border: 1px solid black;
+    border: 1px solid rgb(255, 255, 255);
     border-collapse: collapse;
     margin: 10px;
     padding: 10px;

@@ -3,16 +3,19 @@ import { logo } from "../../assets";
 import { footerLinks, socialMedia } from "../../constants";
 
 const Footer = () => (
-  <section className={`${styles.flexCenter} ${styles.paddingY} flex-col`}>
+  <section className={`${styles.flexCenter} ${styles.paddingY} flex-col`} style={{
+    width: "90vw",
+    textAlign: "center",
+  }}>
     <div className={`${styles.flexStart} md:flex-row flex-col mb-8 w-full`}>
       <div className="flex-[1] flex flex-col justify-start mr-10">
         <img
           src={logo}
-          alt="hoobank"
+          alt="Dataforge"
           className="w-[266px] h-[72.14px] object-contain"
         />
         <p className={`${styles.paragraph} mt-4 max-w-[312px]`}>
-          A new way to make your data preprocess, reliable and secure.
+        A new way to make your data preprocess, reliable and secure.
         </p>
       </div>
 

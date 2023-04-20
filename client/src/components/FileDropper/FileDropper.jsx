@@ -6,6 +6,7 @@ import "./styles.css";
 import * as api from "../../api";
 import {Button} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { Footer } from "../LandingPage";
 
 const FileDropper = () => {
   const { fileState, setFileState } = useContext(FileContext);
@@ -93,54 +94,61 @@ const FileDropper = () => {
   };
 
   return (
-    <div>
-
-      {showNext &&
-        <div>
-          <Button onClick={
-            ()=>{
-              navigate("/pipeline");
-            }
-          } style={{marginBottom:"10px"}}>Build Pipeline</Button>
-          <Button style={{marginBottom:"10px"}}>Select Existing Pipeline</Button>
-
-        </div> 
-        }
-      <form
-        id="form-file-upload"
-        onDragEnter={handleDrag}
-        onSubmit={(e) => e.preventDefault()}
-      >
-        <input
-          ref={inputRef}
-          type="file"
-          id="input-file-upload"
-          multiple={true}
-          onChange={handleChange}
-        />
-        <label
-          id="label-file-upload"
-          htmlFor="input-file-upload"
-          className={dragActive ? "drag-active" : ""}
-        >
+    <body style={{ backgroundColor: 'background' }}>
+        <div style={{ marginTop: '50px', marginBottom: '50px' }}>
+        {showNext &&
           <div>
-            <p>Drag and drop your file here or</p>
-            <button className="upload-button" onClick={onButtonClick}>
-              Upload a file
-            </button>
-          </div>
-        </label>
-        {dragActive && (
-          <div
-            id="drag-file-element"
-            onDragEnter={handleDrag}
-            onDragLeave={handleDrag}
-            onDragOver={handleDrag}
-            onDrop={handleDrop}
-          ></div>
-        )}
-      </form>
-    </div>
+            <Button onClick={
+              ()=>{
+                navigate("/pipeline");
+              }
+            } style={{marginBottom:"10px"}}>Build Pipeline</Button>
+            <Button style={{marginBottom:"10px"}}>Select Existing Pipeline</Button>
+
+          </div> 
+          }
+        <form
+          id="form-file-upload"
+          onDragEnter={handleDrag}
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <input
+            ref={inputRef}
+            type="file"
+            id="input-file-upload"
+            multiple={true}
+            onChange={handleChange}
+          />
+          <label
+            id="label-file-upload"
+            htmlFor="input-file-upload"
+            className={dragActive ? "drag-active" : ""}
+          >
+            <div>
+              <p> <b>
+                Drag and drop your file here
+              </b> </p> 
+              <p style={{ marginTop: "20px", marginBottom: "15px" }}><b>OR</b></p>
+              <button className="upload-button" onClick={onButtonClick}><b>
+                Upload a file
+              </b></button>
+            </div>
+          </label>
+          {dragActive && (
+            <div
+              id="drag-file-element"
+              onDragEnter={handleDrag}
+              onDragLeave={handleDrag}
+              onDragOver={handleDrag}
+              onDrop={handleDrop}
+            ></div>
+          )}
+        </form>
+      </div>
+      <div>
+        <Footer/>
+      </div>
+    </body>
   );
 };
 
