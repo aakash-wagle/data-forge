@@ -6,7 +6,7 @@ import { Stack } from "@mui/material";
 import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
 import PipelineBuilder from "./components/Pipeline/PipelineBuilder";
 import styles from "./style";
-import { NavbarNew } from "./components/LandingPage";
+import { Footer, NavbarNew } from "./components/LandingPage";
 import LandingPage from "./components/LandingPage/LandingPage";
 import FileProvider from "./contexts/FileContext";
 import LoginModalProvider from "./contexts/LoginModalContext";
@@ -49,6 +49,7 @@ function App() {
                     >
                       <FileDropper />
                       <FileTable />
+                      <Footer />
                     </Stack>
                   }
                 />

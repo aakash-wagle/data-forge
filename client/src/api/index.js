@@ -2,13 +2,13 @@ import axios from "axios";
 
 // export const API = axios.create({ baseURL: "https://dataforge.onrender.com/" });
 export const API = axios.create({
-  baseURL: "http://127.0.0.1:5174/json",
+  baseURL: "/json",
   // baseURL: "http://127.0.0.1:8000/",
   withCredentials: false,
   headers: {
-    'Access-Control-Allow-Origin' : '*',
+    "Access-Control-Allow-Origin": "*",
     // 'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-    }
+  },
 });
 
 // File Processing routes
@@ -31,10 +31,12 @@ export const API = axios.create({
 // });
 
 // Auth requests
-export const login = (formData) =>
-  API.post("/login", formData, {
+export const login = (formData) => {
+  console.log("login handler called");
+  return API.post("/login", formData, {
     headers: { "Content-Type": "application/json" },
   });
+};
 
 export const register = (formData) => {
   console.log("Register API called");

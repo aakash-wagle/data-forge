@@ -49,7 +49,6 @@ export const navLinks = [
   {
     id: "Get",
     title: "Get Started",
-    path: "/filedropper"
   },  
 ];
 
