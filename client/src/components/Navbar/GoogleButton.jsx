@@ -15,7 +15,7 @@ const GoogleButton = ({ isLogin }) => {
         color: "white",
         border: "none",
         boxShadow: "none",
-        width: "500px",
+        width: "95%",
         height: "50px",
       }}
     >
