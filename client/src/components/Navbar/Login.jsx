@@ -185,12 +185,10 @@ export const LoginModal = (props) => {
               </div>
             )}
           </div>
-
-          <div>
-            <p style={{textAlign: "center", color: "Background", marginBottom: "20px"}}> OR </p>
+          <div className={style.Container}>
+            <p style={{textAlign: "center", color: "Background", marginBottom: "20px"}}>OR</p>
+            <GoogleButton isLogin={isLogin}/>
           </div>
-
-          <GoogleButton isLogin={isLogin}/>
         </Box>
       </Modal>
     </Fragment>

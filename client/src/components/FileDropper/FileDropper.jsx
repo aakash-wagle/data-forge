@@ -88,7 +88,7 @@ const FileDropper = () => {
   };
 
   return (
-    <body style={{ backgroundColor: "background" }}>
+    <body style={{ backgroundColor: "background", alignItems: "center" }}>
       <div style={{ marginTop: "50px", marginBottom: "50px" }}>
         {showNext && (
           <div>

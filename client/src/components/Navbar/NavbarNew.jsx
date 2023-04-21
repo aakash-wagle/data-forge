@@ -36,16 +36,18 @@ const NavbarNew = () => {
             } ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}
             onClick={() => {
               setActive(nav.title);
-              if (nav.id === "Get") {
-                console.log("nav.id = Get");
-                if (localStorage.getItem("User")) {
-                  console.log("navigate");
-                  navigate("/filedropper");
-                } else {
-                  console.log("setOpenLogin");
-                  setOpenLogin(true);
-                }
-              }
+              navigate(nav.path);
+
+              // if (nav.id === "Get") {
+              //   console.log("nav.id = Get");
+              //   if (localStorage.getItem("User")) {
+              //     console.log("navigate");
+              //     navigate("/filedropper");
+              //   } else {
+              //     console.log("setOpenLogin");
+              //     setOpenLogin(true);
+              //   }
+              // }
             }}
           >
             <a href={`#${nav.id}`}>{nav.title}</a>

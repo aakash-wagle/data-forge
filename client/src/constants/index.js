@@ -37,18 +37,22 @@ export const navLinks = [
   {
     id: "home",
     title: "Home",
+    path: "/#home",
   },
   {
     id: "Documentation",
     title: "Documentation",
+    path: "/#Documentation",
   },
   {
     id: "Review",
     title: "Review",
+    path: "/#Review",
   },
   {
     id: "Get",
     title: "Get Started",
+    path: "/filedropper",
   },  
 ];
 

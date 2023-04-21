@@ -6,6 +6,7 @@ import {
   AccordionDetails,
   AccordionSummary,
   Avatar,
+  Box,
   IconButton,
   List,
   ListItem,
@@ -18,6 +19,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { blueGrey } from "@mui/material/colors";
 import ConstructionIcon from "@mui/icons-material/Construction";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Footer } from "../LandingPage";
 
 const PipelineHistory = () => {
   // Array of pipeline objects.
@@ -68,7 +70,7 @@ const PipelineHistory = () => {
   return (
     <React.Fragment>
       {pipelineHistory && (
-        <div>
+        <Box  sx={{marginBottom: 10}}>
           {pipelineHistory.map((pipeline, index) => (
             <Accordion
               key={index}
@@ -121,8 +123,11 @@ const PipelineHistory = () => {
               </AccordionDetails>
             </Accordion>
           ))}
-        </div>
+        </Box>
       )}
+      <div style={{display: 'flex', justifyContent: 'center'}}>
+        <Footer />
+      </div>
     </React.Fragment>
   );
 };
