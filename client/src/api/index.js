@@ -19,16 +19,16 @@ export const API = axios.create({
 //   });
 
 // executes before every request
-// API.interceptors.request.use((req) => {
-//   if (localStorage.getItem("User")) {
-//     req.headers.Authorization = `Bearer ${
-//       JSON.parse(localStorage.getItem("User")).user.token
-//     }`;
-//   }
-//   console.log("Logging interceptor's populated header");
-//   console.log(req.headers.Authorization);
-//   return req;
-// });
+API.interceptors.request.use((req) => {
+  if (localStorage.getItem("User")) {
+    req.headers.Authorization = `Bearer ${
+      JSON.parse(localStorage.getItem("User")).token
+    }`;
+  }
+  // console.log("Logging interceptor's populated header");
+  // console.log(req.headers.Authorization);
+  return req;
+});
 
 // Auth requests
 export const login = (formData) => {

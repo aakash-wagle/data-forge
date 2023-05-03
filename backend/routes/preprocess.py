@@ -7,10 +7,19 @@ from config.db import db,users
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import urllib.parse
+import hashlib
 
 pre = APIRouter()
 
 collection = db["datasets"]
+
+def compareHash(user_id, data):
+    dataset = db["datasets"].find_one({"id":user_id})
+    hashnew = hashlib.sha256(str(data).encode('utf-8')).hexdigest()
+    if dataset["hash"] == hashnew:
+        return True
+    else:
+        return False
 
 @pre.get("/get_csv_column_info/{user_id}")
 async def get_csv_column_info(user_id: str):
@@ -43,16 +52,14 @@ async def rename_columns(user_id:str, old_name:str, new_name:str):
     try:
         df.rename(columns={old_name: new_name}, inplace=True)
         data = df.to_dict(orient='records')
-        obj= {
-                "id":user_id, 
-                "file":data
-            }
-        #deleting the previous data
-        if db["datasets"].find_one({"id":user_id}): 
-            db["datasets"].delete_one({"id":user_id})
-        collection = db["datasets"]
-        collection.insert_one(obj)
-        return {"message": "Column renamed successfully"}
+        notChanged = compareHash(user_id, data)
+
+        #updating the previous data
+        dataset = db["datasets"].find_one({"id":user_id})
+        if dataset: 
+            dataset["file"] = data
+        db["datasets"].replace_one({"id":user_id}, dataset)
+        return {"message": "Column renamed successfully","notChanged":notChanged}
     except Exception as e:
         return {"message": "Column not found", "error": str(e)}
 
@@ -70,16 +77,16 @@ async def drop_columns(user_id:str, column_name:str):
     try:
         df.drop(columns=column_name, inplace=True)
         data = df.to_dict(orient='records')
-        obj= {
-                "id":user_id, 
-                "file":data
-            }
-        #deleting the previous data
-        if db["datasets"].find_one({"id":user_id}): 
-            db["datasets"].delete_one({"id":user_id})
-        collection = db["datasets"]
-        collection.insert_one(obj)
-        return {"message": "Column dropped successfully"}
+        notChanged = compareHash(user_id, data)
+
+        #updating the previous data
+        dataset = db["datasets"].find_one({"id":user_id})
+        if dataset: 
+            dataset["file"] = data
+        db["datasets"].replace_one({"id":user_id}, dataset)
+
+
+        return {"message": "Column dropped successfully","notChanged":notChanged}
     except Exception as e:
         return {"message": "Column not found", "error": str(e)}
     
@@ -101,16 +108,13 @@ async def fill_nan(user_id:str, column_name:str,value:str):
         else:
             df[column_name].fillna(method = value, inplace=True)
         data = df.to_dict(orient='records')
-        obj= {
-                "id":user_id, 
-                "file":data
-            }
-        #deleting the previous data
-        if db["datasets"].find_one({"id":user_id}): 
-            db["datasets"].delete_one({"id":user_id})
-        collection = db["datasets"]
-        collection.insert_one(obj)
-        return {"message": "NaN values filled successfully"}
+        notChanged = compareHash(user_id, data)
+        #updating the previous data
+        dataset = db["datasets"].find_one({"id":user_id})
+        if dataset: 
+            dataset["file"] = data
+        db["datasets"].replace_one({"id":user_id}, dataset)
+        return {"message": "Nan filled successfully","notChanged":notChanged}
     except Exception as e:
         return {"message": "Column not found", "error": str(e)}
     
@@ -128,16 +132,13 @@ async def drop_nan(user_id:str, column_name:str):
     try:
         df.dropna(subset=[column_name], inplace=True)
         data = df.to_dict(orient='records')
-        obj= {
-                "id":user_id, 
-                "file":data
-            }
-        #deleting the previous data
-        if db["datasets"].find_one({"id":user_id}): 
-            db["datasets"].delete_one({"id":user_id})
-        collection = db["datasets"]
-        collection.insert_one(obj)
-        return {"message": "NaN values dropped successfully"}
+        notChanged = compareHash(user_id, data)
+        #updating the previous data
+        dataset = db["datasets"].find_one({"id":user_id})
+        if dataset: 
+            dataset["file"] = data
+        db["datasets"].replace_one({"id":user_id}, dataset)
+        return {"message": "Nan dropped successfully","notChanged":notChanged}
     except Exception as e:
         return {"message": "Column not found", "error": str(e)}
     
@@ -192,16 +193,14 @@ async def tokenize(user_id:str, column_name:str):
         new_col_name = f"{column_name}_tokenized"
         df[new_col_name] = tokenized_col
         data = df.to_dict(orient='records')
-        obj= {
-                "id":user_id, 
-                "file":data
-            }
-        #deleting the previous data
-        if db["datasets"].find_one({"id":user_id}): 
-            db["datasets"].delete_one({"id":user_id})
-        collection = db["datasets"]
-        collection.insert_one(obj)
-        return {"message": "Tokenization done successfully"}
+        notChanged = compareHash(user_id, data)
+        #updating the previous data
+        dataset = db["datasets"].find_one({"id":user_id})
+        if dataset: 
+            dataset["file"] = data
+        db["datasets"].replace_one({"id":user_id}, dataset)
+
+        return {"message": "Tokenized successfully","notChanged":notChanged}
     except Exception as e:
         return {"message": "Column not found", "error": str(e)}
     
@@ -221,16 +220,14 @@ async def remove_stopwords(user_id:str, column_name:str):
         stop_words = set(stopwords.words('english'))
         df[new_col_name] = df[column_name].apply(lambda x: [word for word in x if word not in stop_words])
         data = df.to_dict(orient='records')
-        obj= {
-                "id":user_id, 
-                "file":data
-            }
-        #deleting the previous data
-        if db["datasets"].find_one({"id":user_id}): 
-            db["datasets"].delete_one({"id":user_id})
-        collection = db["datasets"]
-        collection.insert_one(obj)
-        return {"message": "Stopwords removed successfully"}
+        notChanged = compareHash(user_id, data)
+        #updating the previous data
+        dataset = db["datasets"].find_one({"id":user_id})
+        if dataset: 
+            dataset["file"] = data
+        db["datasets"].replace_one({"id":user_id}, dataset)
+
+        return {"message": "Stopwords removed successfully","notChanged":notChanged}
     except Exception as e:
         return {"message": "Column not found", "error": str(e)}
 
@@ -246,16 +243,14 @@ async def drop_nan(user_id:str, column_name:str, data_type:str):
     try:
         df[column_name] = df[column_name].astype(data_type)
         data = df.to_dict(orient='records')
-        obj= {
-                "id":user_id, 
-                "file":data
-            }
-        #deleting the previous data
-        if db["datasets"].find_one({"id":user_id}): 
-            db["datasets"].delete_one({"id":user_id})
-        collection = db["datasets"]
-        collection.insert_one(obj)
-        return {"message": "Column data type changed successfully"}
+        notChanged = compareHash(user_id, data)
+        #updating the previous data
+        dataset = db["datasets"].find_one({"id":user_id})
+        if dataset: 
+            dataset["file"] = data
+        db["datasets"].replace_one({"id":user_id}, dataset)
+
+        return {"message": "Data type changed successfully","notChanged":notChanged}
     except Exception as e:
         return {"message": "Data type couldn't be changed", "error": str(e)}
 
