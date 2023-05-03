@@ -89,22 +89,7 @@ const FileDropper = () => {
 
   return (
     <body style={{ backgroundColor: "background", alignItems: "center" }}>
-      <div style={{ marginTop: "50px", marginBottom: "50px" }}>
-        {showNext && (
-          <div>
-            <Button
-              onClick={() => {
-                navigate("/pipeline");
-              }}
-              style={{ marginBottom: "10px" }}
-            >
-              Build Pipeline
-            </Button>
-            <Button style={{ marginBottom: "10px" }}>
-              Select Existing Pipeline
-            </Button>
-          </div>
-        )}
+      <div style={{ marginTop: "50px", marginBottom: "30px"}}>
         <form
           id="form-file-upload"
           onDragEnter={handleDrag}
@@ -145,6 +130,23 @@ const FileDropper = () => {
           )}
         </form>
       </div>
+      {showNext && (
+          <div>
+            <Button style={{ marginTop: "30px",marginBottom: "30px",marginRight: "15px",color: "black" }} variant="contained" color="primary" className={`py-4 px-6 font-poppins font-medium text-[18px] text-primary bg-blue-gradient rounded-[10px] outline-none`}>
+              Preview Your Data
+            </Button>
+            <Button variant="contained" color="primary" style={{marginTop: "30px", marginBottom: "30px",marginRight: "15px", color: "black"}} className={`py-4 px-6 font-poppins font-medium text-[18px] text-primary bg-blue-gradient rounded-[10px] outline-none`}
+              onClick={() => {
+                navigate("/pipeline");
+              }}
+            >
+              Build Pipeline
+            </Button>
+            <Button style={{ marginTop: "30px",marginBottom: "30px", color: "black" }} variant="contained" color="primary" className={`py-4 px-6 font-poppins font-medium text-[18px] text-primary bg-blue-gradient rounded-[10px] outline-none`}>
+              Select Existing Pipeline
+            </Button>
+          </div>
+      )}
     </body>
   );
 };

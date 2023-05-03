@@ -324,6 +324,7 @@ const PipelineBuilder = () => {
                 onClick={() => {
                   exitHandler();
                 }}
+                variant="contained" color="primary" style={{ color: "Black", marginBottom: "10px", marginTop:"10px"}} className={`py-4 px-6 font-poppins font-medium text-[18px] text-primary bg-blue-gradient rounded-[10px] outline-none`}
               >
                 Exit
               </Button>
@@ -331,16 +332,18 @@ const PipelineBuilder = () => {
                 onClick={() => {
                   addLayerHandler();
                 }}
+                variant="contained" color="primary" style={{ color: "Black", marginBottom: "10px"}} className={`py-4 px-6 font-poppins font-medium text-[18px] text-primary bg-blue-gradient rounded-[10px] outline-none`}
               >
                 Add layer
               </Button>
             </FormControl>
           )}
         {pipeline != [] && (
-          <Button
+          <Button 
             onClick={() => {
               setShowPipelineName(true);
             }}
+            variant="contained" color="primary" style={{ color: "Black", marginBottom: "10px"}} className={`py-4 px-6 font-poppins font-medium text-[18px] text-primary bg-blue-gradient rounded-[10px] outline-none`}
           >
             Finish
           </Button>
@@ -348,7 +351,9 @@ const PipelineBuilder = () => {
         </div>
       ):(<Button onClick={()=>{
         navigate("/filedropper");
-      }}>Upload Data</Button>)}
+      }} variant="contained" color="primary" style={{ color: "black"}} className={`py-4 px-6 font-poppins font-medium text-[18px] text-primary bg-blue-gradient rounded-[10px] outline-none`}>
+        Upload Data
+        </Button>)}
       <div className={style.layerTable}>
         <h3>Layers</h3>
         <ol>

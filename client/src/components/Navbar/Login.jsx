@@ -178,7 +178,7 @@ export const LoginModal = (props) => {
                     onChange={handleInputChange}
                   />
 
-                  <Button type="submit" variant="contained" color="primary" style={{ color: "ButtonFace"}} className={`py-4 px-6 font-poppins font-medium text-[18px] text-primary bg-blue-gradient rounded-[10px] outline-none`}>
+                  <Button type="submit" variant="contained" color="primary" style={{ color: "black"}} className={`py-4 px-6 font-poppins font-medium text-[18px] text-primary bg-blue-gradient rounded-[10px] outline-none`}>
                     Sign up
                   </Button>
                 </form>

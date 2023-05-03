@@ -6,11 +6,11 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: true,
-    proxy: {
-      "/json": {
-        target: "http://localhost:8000",
-        rewrite: (path) => path.replace(/^\/json/, ""),
-      },
-    },
+    // proxy: {
+    //   "/json": {
+    //     target: "http://localhost:8000",
+    //     rewrite: (path) => path.replace(/^\/json/, ""),
+    //   },
+    // },
   },
 });

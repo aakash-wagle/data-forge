@@ -1,15 +1,15 @@
 import axios from "axios";
 
-// export const API = axios.create({ baseURL: "https://dataforge.onrender.com/" });
-export const API = axios.create({
-  baseURL: "/json",
-  // baseURL: "http://127.0.0.1:8000/",
-  withCredentials: false,
-  headers: {
-    "Access-Control-Allow-Origin": "*",
-    // 'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-  },
-});
+export const API = axios.create({ baseURL: "https://dataforge.onrender.com/" });
+// export const API = axios.create({
+//   baseURL: "/json",
+//   // baseURL: "http://127.0.0.1:8000/",
+//   withCredentials: false,
+//   headers: {
+//     "Access-Control-Allow-Origin": "*",
+//     // 'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+//   },
+// });
 
 // File Processing routes
 // Get dataset head, i.e., first 5 rows by default
